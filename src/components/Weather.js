@@ -1,15 +1,25 @@
 import {useState} from 'react'
 import './Weather.css'
 import Radiobutton from './Radiobutton'
+import {apiKey} from '../env'
 function Weather() {
     const [zip, setZip] = useState('')
     const [unit, setUnit] = useState('')
     const [data, setData] = useState(null)
+
+    async function fetchWeather(){
+        const apikey = apiKey
+        const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apikey}`
+        await fetch()
+    }
+
     return (
         <div className='Weather'>
             {data && <h1>{zip} {unit}</h1>}
             <form onSubmit={e => {
                 e.preventDefault()
+                fetchWeather()
+
             }}>
                 <div>
                     <input
