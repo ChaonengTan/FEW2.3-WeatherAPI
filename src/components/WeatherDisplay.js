@@ -1,5 +1,6 @@
 function WeatherDisplay(props) {
-    const {temp, feelsLike, description, cod, message} = props
+    const {temp, feelsLike, description, humidity, pressure, windSpeed, icon, cod, message} = props
+    const iconPath = `http://openweathermap.org/img/wn/${icon}@2x.png`
     if (cod!==200){
         return(
             <small>{message}</small>
@@ -7,9 +8,10 @@ function WeatherDisplay(props) {
     }
     return (
         <div className='WeatherDisplay'>
-            <h1>{temp}</h1>
+            <h1><img src={iconPath}/>{temp}</h1>
             <small>Feels Like: {feelsLike}</small>
             <p>{description}</p>
+            <p>Humidity: {humidity} Pressure: {pressure} Wind Speed: {windSpeed}</p>
         </div>
     )
 }

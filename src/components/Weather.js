@@ -15,14 +15,18 @@ function Weather() {
         const path = `https://api.openweathermap.org/data/2.5/weather?zip=${zip}&appid=${apikey}&units=${unit}`
         const res = await fetch(path)
         const json = await res.json()
-        if(cod!==200){
+        if(json.cod!==200){
             setData({cod:json.cod, message:json.message})
             return
         }
         setData({
             temp:json.main.temp,
-            feelsLike:json.main.feelsLike, 
+            feelsLike:json.main.feels_like, 
             description:json.weather[0].description,
+            humidity:json.main.humidity,
+            pressure:json.main.pressure,
+            windSpeed:json.wind.speed,
+            icon:json.weather[0].icon,
             cod:json.cod,
             message:json.message,
         })
@@ -30,7 +34,7 @@ function Weather() {
 
     return (
         <div className='Weather'>
-            {data && <WeatherDisplay {...data}/>}
+            <WeatherDisplay {...data}/>
             <h1>{zip} {unit}</h1>
             <form onSubmit={e => {
                 e.preventDefault()
