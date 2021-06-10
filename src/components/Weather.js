@@ -4,6 +4,7 @@ import {apiKey} from '../env'
 
 import Radiobutton from './Radiobutton'
 import WeatherDisplay from './WeatherDisplay'
+import Mood from './Mood/Mood'
 
 function Weather() {
     const [zip, setZip] = useState('')
@@ -29,9 +30,9 @@ function Weather() {
             icon:json.weather[0].icon,
             cod:json.cod,
             message:json.message,
+            weather:json.weather[0].main,
         })
     }
-
     return (
         <div className='Weather'>
             <WeatherDisplay {...data}/>
@@ -75,6 +76,7 @@ function Weather() {
                 />
                 
             </form>
+            {data && <Mood weather={data.weather}/>}
         </div>
     )
 }

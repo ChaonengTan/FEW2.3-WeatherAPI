@@ -1,0 +1,7 @@
+.moodInput {
+    display: flex;
+    align-items: center;
+}
+.moodInput>* {
+    margin-right: .5em;
+}
